@@ -1,63 +1,45 @@
-﻿{
-  "$schema": "https://raw.githubusercontent.com/nicedoc/tauri/dev/.schema/config.schema.json",
-  "productName": "çåè¯­ AI ç¯è¯",
-  "version": "1.0.0",
-  "identifier": "com.cheshiping.ai-popup-translator",
-  "build": {
-    "beforeDevCommand": "npm run dev",
-    "devUrl": "http://localhost:1420",
-    "beforeBuildCommand": "npm run build",
-    "frontendDist": "../dist"
-  },
-  "app": {
-    "windows": [
-      {
-        "title": "çåè¯­ AI ç¯è¯",
-        "width": 800,
-        "height": 600,
-        "visible": false,
-        "decorations": false,
-        "alwaysOnTop": true,
-        "skipTaskbar": true,
-        "center": true
-      }
-    ],
-    "security": {
-      "csp": "default-src 'self'; connect-src 'self' https://dashscope.aliyuncs.com https://api.openai.com https://api.deepseek.com https://api.anthropic.com https://api.moonshot.cn"
-    }
-  },
-  "bundle": {
-    "active": true,
-    "targets": "all",
-    "icon": [
-      "icons/32x32.png",
-      "icons/128x128.png",
-      "icons/128x128@2x.png",
-      "icons/icon.icns",
-      "icons/icon.ico"
-    ],
-    "resources": [],
-    "externalBin": [],
-    "copyright": "Copyright (c) 2026 CheShiping",
-    "category": "DeveloperTool",
-    "shortDescription": "çåè¯­ AI ç¯è¯å¨å±å·¥å¨",
-    "longDescription": "å¨ä»»æäººåºç¨ä¸éæææï¼æä¸æ¬å¾è½å¨é¾æè¯­åè¯æå°æå¨æ¹ç¯å°å±å¯¹è¯æ¡æã",
-    "deb": {
-      "depends": []
-    },
-    "macOS": {
-      "frameworks": [],
-      "minimumSystemVersion": "10.15",
-      "exceptionDomain": "",
-      "signingIdentity": null,
-      "providerShortName": null,
-      "entitlements": null
-    },
-    "windows": {
-      "certificateThumbprint": null,
-      "digestAlgorithm": "sha256",
-      "timestampUrl": ""
-    }
-  },
-  "plugins": {}
+{
+    "build":  {
+                  "frontendDist":  "../dist",
+                  "beforeBuildCommand":  "npm run build",
+                  "devUrl":  "http://localhost:1420",
+                  "beforeDevCommand":  "npm run dev"
+              },
+    "version":  "1.0.0",
+    "bundle":  {
+                   "copyright":  "Copyright (c) 2026 CheShiping",
+                   "icon":  [
+                                "icons/32x32.png",
+                                "icons/128x128.png",
+                                "icons/128x128@2x.png",
+                                "icons/icon.icns",
+                                "icons/icon.ico"
+                            ],
+                   "targets":  "all",
+                   "active":  true,
+                   "shortDescription":  "AI Popup Translator",
+                   "category":  "DeveloperTool"
+               },
+    "plugins":  {
+
+                },
+    "app":  {
+                "windows":  [
+                                {
+                                    "decorations":  false,
+                                    "alwaysOnTop":  true,
+                                    "width":  800,
+                                    "visible":  false,
+                                    "title":  "AI Translator",
+                                    "center":  true,
+                                    "height":  600,
+                                    "skipTaskbar":  true
+                                }
+                            ],
+                "security":  {
+                                 "csp":  "default-src \u0027self\u0027; connect-src \u0027self\u0027 https://dashscope.aliyuncs.com https://api.openai.com"
+                             }
+            },
+    "identifier":  "com.cheshiping.ai-popup-translator",
+    "productName":  "AI Translator"
 }

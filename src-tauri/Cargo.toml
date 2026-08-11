@@ -1,30 +1,28 @@
-﻿[package]
+[package]
 name = "ai-popup-translator"
 version = "1.0.0"
-description = "çåè¯­ AI ç¯è¯å¨å±å·¥å¨"
+description = "AI Popup Translator - Desktop translation tool"
 authors = ["CheShiping"]
 license = "Apache-2.0"
 repository = "https://github.com/CheShiping/ai-popup-translator"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [lib]
 name = "ai_popup_translator_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]
-tauri-build = { version = "2.0.3", features = [] }
+tauri-build = { version = "2", features = [] }
 
 [dependencies]
-tauri = { version = "2.1.1", features = ["tray-icon", "image-png"] }
-tauri-plugin-store = "2.1.0"
-tauri-plugin-global-shortcut = "2.0.0"
-tauri-plugin-clipboard-manager = "2.0.0"
-tauri-plugin-shell = "2.0.2"
-tauri-plugin-dialog = "2.0.4"
-tauri-plugin-fs = "2.0.3"
-tauri-plugin-notification = "2.0.1"
+tauri = { version = "2", features = ["tray-icon", "image-png"] }
+tauri-plugin-store = "2"
+tauri-plugin-global-shortcut = "2"
+tauri-plugin-clipboard-manager = "2"
+tauri-plugin-shell = "2"
+tauri-plugin-dialog = "2"
+tauri-plugin-fs = "2"
+tauri-plugin-notification = "2"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 reqwest = { version = "0.12", features = ["json", "rustls-tls"], default-features = false }
@@ -42,5 +40,4 @@ log = "0.4"
 env_logger = "0.11"
 
 [features]
-# This feature is used for production builds or when a dev server is not configured, DO NOT REMOVE!!
 custom-protocol = ["tauri/custom-protocol"]
