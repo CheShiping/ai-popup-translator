@@ -1,4 +1,4 @@
-﻿use crate::config::AppConfig;
+use crate::config::AppConfig;
 use crate::error::{AppError, Result};
 use crate::config::TranslationResult;
 use reqwest::Client;
@@ -78,7 +78,7 @@ fn parse_translation_response(json_str: &str, original: String) -> Result<Transl
     }
 
     let get_optional_field = |key: &str| -> Option<String> {
-        parsed[key].as_str().filter(|s| !s.is_empty() && s != "null").map(|s| s.to_string())
+        parsed[key].as_str().filter(|s| !s.is_empty() && *s != "null").map(|s| s.to_string())
     };
 
     let timestamp = chrono::Local::now().format("%Y-%m-%d %H:%M:%S").to_string();

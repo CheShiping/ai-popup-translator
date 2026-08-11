@@ -1,4 +1,4 @@
-﻿mod commands;
+mod commands;
 mod config;
 mod error;
 mod obsidian;
@@ -6,8 +6,9 @@ mod tray;
 mod translator;
 mod window;
 
-use commands::*;
+use std::sync::Mutex;
 use tauri::Manager;
+use crate::config::AppConfig;
 
 fn build_app() -> tauri::Builder<tauri::Wry> {
     tauri::Builder::default()
@@ -19,12 +20,6 @@ fn build_app() -> tauri::Builder<tauri::Wry> {
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_notification::init())
         .setup(|app| {
-            // Initialize logger
-            env_logger::init();
-
-            // Initialize config store
-            let _config = config::AppConfig::init(app.handle())?;
-
             // Setup system tray
             tray::create_tray(app.handle())?;
 

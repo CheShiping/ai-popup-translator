@@ -1,4 +1,4 @@
-﻿use tauri::{AppHandle, Manager, PhysicalPosition, PhysicalSize};
+use tauri::{AppHandle, Manager, PhysicalPosition};
 
 pub fn show_translation_window(app: &AppHandle, x: f64, y: f64) -> tauri::Result<()> {
     // Create or show the popup window

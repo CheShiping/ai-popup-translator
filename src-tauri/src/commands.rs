@@ -1,13 +1,12 @@
-﻿use crate::config::{AppConfig, HistoryEntry, TranslationResult};
+use std::sync::Mutex;
+use crate::config::{AppConfig, HistoryEntry, TranslationResult};
 use crate::error::Result;
 use crate::obsidian;
 use crate::translator;
 use crate::window;
-use chrono::Local;
-use std::sync::Mutex;
-use tauri::{AppHandle, Manager, State};
+use tauri::{AppHandle, State, Emitter};
 
-struct AppState {
+pub struct AppState {
     config: Mutex<AppConfig>,
     history: Mutex<Vec<HistoryEntry>>,
 }
@@ -30,7 +29,6 @@ pub async fn translate(
     let config = state.config.lock().unwrap().clone();
     let result = translator::translate_text(text, &config).await?;
 
-    // Save to history
     let entry = HistoryEntry {
         id: uuid::Uuid::new_v4().to_string(),
         original: result.original.clone(),
@@ -44,12 +42,10 @@ pub async fn translate(
     };
     state.history.lock().unwrap().push(entry);
 
-    // Auto-save to Obsidian if enabled
     if config.auto_save && !config.obsidian_path.is_empty() {
         let _ = obsidian::save_translation(&result, &config.obsidian_path);
     }
 
-    // Emit event to frontend
     let _ = app.emit("translation-complete", &result);
 
     Ok(result)
@@ -57,8 +53,6 @@ pub async fn translate(
 
 #[tauri::command]
 pub fn get_clipboard_text() -> Result<String> {
-    // Note: In Tauri 2, clipboard is handled via the clipboard plugin
-    // This is a placeholder - actual clipboard reading happens via JS API
     Ok(String::new())
 }
 

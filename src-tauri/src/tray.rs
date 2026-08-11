@@ -1,20 +1,20 @@
-﻿use tauri::{
+use tauri::{
     menu::{Menu, MenuItem},
     tray::{MouseButton, MouseButtonState, TrayIconBuilder, TrayIconEvent},
-    AppHandle, Manager,
+    AppHandle, Manager, Emitter,
 };
-use crate::Result;
+use crate::error::Result;
 
 pub fn create_tray(app: &AppHandle) -> Result<()> {
-    let show_item = MenuItem::with_id(app, "show", "æ¤ç¤ºä¸»çªå£", true, None::<&str>)?;
-    let settings_item = MenuItem::with_id(app, "settings", "è®¾ç½®", true, None::<&str>)?;
-    let history_item = MenuItem::with_id(app, "history", "åå²è®°å½", true, None::<&str>)?;
-    let quit_item = MenuItem::with_id(app, "quit", "éåº¦", true, None::<&str>)?;
+    let show_item = MenuItem::with_id(app, "show", "Show", true, None::<&str>)?;
+    let settings_item = MenuItem::with_id(app, "settings", "Settings", true, None::<&str>)?;
+    let history_item = MenuItem::with_id(app, "history", "History", true, None::<&str>)?;
+    let quit_item = MenuItem::with_id(app, "quit", "Quit", true, None::<&str>)?;
 
     let menu = Menu::with_items(app, &[&show_item, &settings_item, &history_item, &quit_item])?;
 
     let _tray = TrayIconBuilder::with_id("main-tray")
-        .tooltip("çåè¯è¯ AI ç¯è¯")
+        .tooltip("AI Popup Translator")
         .icon(app.default_window_icon().unwrap().clone())
         .menu(&menu)
         .show_menu_on_left_click(false)
