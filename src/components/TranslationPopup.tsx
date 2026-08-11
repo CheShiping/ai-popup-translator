@@ -1,15 +1,13 @@
 ﻿import { useTranslationStore } from '../stores/translation'
-import { useUIStore } from '../stores/ui'
 
 export function TranslationPopup() {
-  const { text, result, isLoading, error } = useTranslationStore()
-  const { theme } = useUIStore()
+  const { result, isLoading, error } = useTranslationStore()
 
   if (isLoading) {
     return (
       <div className="popup popup--loading">
         <div className="popup__spinner" />
-        <span className="popup__loading-text">ç¯è¯ä¸­...</span>
+        <span className="popup__loading-text">Translating...</span>
       </div>
     )
   }
@@ -56,7 +54,7 @@ export function TranslationPopup() {
 
       {result.example && (
         <div className="popup__example">
-          <span className="popup__example-label">ä¾åï¼</span>
+          <span className="popup__example-label">Example:</span>
           {result.example}
         </div>
       )}
